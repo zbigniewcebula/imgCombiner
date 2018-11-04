@@ -33,6 +33,7 @@ uint	outHeight	= 32;
 string	outFile		= "out.png";
 
 bool fileExists(string name);
+bool dirExists(string name);
 
 int main(int argc, char** argv) {
 	vector<string>	args;
@@ -89,5 +90,14 @@ bool fileExists(string name) {
 	if (h == NULL) {
 		return false;
 	}
+	fclose(h);
 	return true;
+}
+bool dirExists(string name) {
+	DIR*	dir	= opendir(name.c_str());
+	if (dir) {
+		closedir(dir);
+		return true;
+	}
+	return false;
 }
